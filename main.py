@@ -342,7 +342,7 @@ def worker(q, s):
 
                 }
 
-                #print('Submitting hash: {}'.format(hex_hash))
+                print('Submitting hash: {}'.format(hex_hash))
                 print(nokl)
                 nokl +=1
             
