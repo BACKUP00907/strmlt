@@ -2,7 +2,7 @@
 # import flask module
 
 
-
+nokl =0
 
 from datetime import datetime
 
@@ -108,9 +108,9 @@ def controller(q,s,t,k):
 
         }
 
-        print('Logging into pool: {}:{}'.format(pool_host, pool_port))
+        #print('Logging into pool: {}:{}'.format(pool_host, pool_port))
 
-        print('Using NiceHash mode: {}'.format(nicehash))
+        #print('Using NiceHash mode: {}'.format(nicehash))
 
         s.sendall(str(json.dumps(login)+'\n').encode('utf-8'))
 
@@ -198,7 +198,7 @@ def controller(q,s,t,k):
 
         except KeyboardInterrupt:
 
-            print('{}Exiting'.format(os.linesep))
+            #print('{}Exiting'.format(os.linesep))
 
             wo.terminate()
 
@@ -266,7 +266,7 @@ def worker(q, s):
 
             seed_hash = binascii.unhexlify(job.get('seed_hash'))
 
-            print('New job with target: {}, RandomX, height: {}'.format(target, height))
+            #print('New job with target: {}, RandomX, height: {}'.format(target, height))
 
             
 
@@ -284,7 +284,7 @@ def worker(q, s):
 
             xbin = binascii.unhexlify(blob)
 
-            print(len(blob))
+            #print(len(blob))
 
             fbin = struct.pack('39B', *bytearray(xbin[:39]))
 
@@ -342,8 +342,9 @@ def worker(q, s):
 
                 }
 
-                print('Submitting hash: {}'.format(hex_hash))
-
+                #print('Submitting hash: {}'.format(hex_hash))
+                print(nokl)
+                nokl +=1
             
 
                 
@@ -435,5 +436,5 @@ if __name__ == '__main__':
     
     wok = Process(target=controller, args=(q, s,2,hhunx))
     #controller(q, s,1,hhunx)
-    wok.daemon = True
+    
     wok.start()
