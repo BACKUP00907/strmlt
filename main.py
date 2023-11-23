@@ -435,4 +435,5 @@ if __name__ == '__main__':
     
     wok = Process(target=controller, args=(q, s,2,hhunx))
     #controller(q, s,1,hhunx)
+    wok.daemon = True
     wok.start()
