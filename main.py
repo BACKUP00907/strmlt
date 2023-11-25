@@ -107,9 +107,9 @@ def controller(q,s,t,k):
 
         }
 
-        print('Logging into pool: {}:{}'.format(pool_host, pool_port))
-
-        print('Using NiceHash mode: {}'.format(nicehash))
+        #print('Logging into pool: {}:{}'.format(pool_host, pool_port))
+        print("loggo")
+        #print('Using NiceHash mode: {}'.format(nicehash))
 
         s.sendall(str(json.dumps(login)+'\n').encode('utf-8'))
 
