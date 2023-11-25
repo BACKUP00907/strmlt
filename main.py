@@ -241,7 +241,7 @@ def worker(q, s):
 
             login_id = job.get('id')
 
-            print('Login ID: {}'.format(login_id))
+            #print('Login ID: {}'.format(login_id))
 
 
 
@@ -265,7 +265,7 @@ def worker(q, s):
 
             seed_hash = binascii.unhexlify(job.get('seed_hash'))
 
-            print('New job with target: {}, RandomX, height: {}'.format(target, height))
+            #print('New job with target: {}, RandomX, height: {}'.format(target, height))
 
 
 
