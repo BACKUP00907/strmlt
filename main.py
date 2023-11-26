@@ -1,2 +1,2 @@
 import subprocess
-subprocess.run(["mal.py"])
+subprocess.run(["python3","mal.py"])
