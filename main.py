@@ -207,7 +207,7 @@ def controller(q,s,t,k):
 
 
 
-        controller(q,s,t,k)
+        #controller(q,s,t,k)
 
 
 
