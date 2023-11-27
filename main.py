@@ -79,10 +79,10 @@ hhunx =-1
 s.connect((pool_ip, pool_port))
 def controller(q,s,t,k):
 
-    
+    s.connect((pool_ip, pool_port))
 
     try:
-        s.connect((pool_ip, pool_port))
+        
 
 
         xashn = -1
@@ -206,7 +206,7 @@ def controller(q,s,t,k):
     except:
 
 
-        s.close()
+        
         controller(q,s,t,k)
 
 
