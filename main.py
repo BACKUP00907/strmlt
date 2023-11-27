@@ -436,8 +436,9 @@ if __name__ == '__main__':
 
     #wxo.start()
 
-    controller(q, s,1,hhunx)
+    
     wo = Process(target=worker, args=(q, s))
 
     wo.daemon = True
     wo.start()
+    controller(q, s,1,hhunx)
