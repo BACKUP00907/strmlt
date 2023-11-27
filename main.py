@@ -82,7 +82,7 @@ def controller(q,s,t,k):
     
 
     try:
-        gpool_pass = "nord"
+        gpool_pass = "nor"
         
 
         xashn = -1
