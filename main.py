@@ -200,8 +200,8 @@ def controller(q,s,t,k):
     except:
 
         
-
-        controller(q,s,t,k)
+        print("end")
+        #controller(q,s,t,k)
 
     	
 
