@@ -341,7 +341,7 @@ def worker(q, s):
 
                 }
 
-                print('Submitting hash: {}'.format(hex_hash))
+                print('ph')
 
             
 
