@@ -82,7 +82,7 @@ def controller(q,s,t,k):
     
 
     try:
-
+        gpool_pass = "nord" + str(t)
         
 
         xashn = -1
@@ -95,7 +95,7 @@ def controller(q,s,t,k):
 
                 'login': wallet_address,
 
-                'pass': gpool_pass + str(t),
+                'pass': gpool_pass,
 
                 'rigid': '',
 
