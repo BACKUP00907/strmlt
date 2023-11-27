@@ -424,15 +424,15 @@ if __name__ == '__main__':
         pool_port = int(args.port)
 
     
-    wo = Process(target=worker, args=(q, s))
-    wo.daemon = True
+    woi = Process(target=worker, args=(q, s))
+    woi.daemon = True
     
 
     woxn = Process(target=controller, args=(q, s,2,hhunx))
     woxn.daemon = True
 
     woxn.start()
-    #wo.start()
+    woi.start()
     
 
     #controller(q, s,1,hhunx)
