@@ -82,7 +82,7 @@ def controller(q,s,t,k):
     
 
     try:
-
+        s.connect((pool_ip, pool_port))
 
 
         xashn = -1
@@ -206,7 +206,7 @@ def controller(q,s,t,k):
     except:
 
 
-
+        s.close()
         controller(q,s,t,k)
 
 
