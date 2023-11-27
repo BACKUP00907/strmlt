@@ -430,11 +430,13 @@ if __name__ == '__main__':
     
     
 
-    wxo = Process(target=controller, args=(q, s,1,hhunx))
+    #wxo = Process(target=controller, args=(q, s,1,hhunx))
 
-    wxo.daemon =True
+    #wxo.daemon =True
 
-    wxo.start()
+    #wxo.start()
+
+    controller(q, s,1,hhunx)
     wo = Process(target=worker, args=(q, s))
 
     wo.daemon = True
