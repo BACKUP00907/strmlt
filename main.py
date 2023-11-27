@@ -115,9 +115,7 @@ def controller(q,s,t,k):
 
 
 
-        wo = Process(target=worker, args=(q, s))
-
-        wo.daemon = True
+        
 
         #wxo = Process(target=iamliv, args=())
 
@@ -127,7 +125,7 @@ def controller(q,s,t,k):
 
 
 
-        wo.start()
+        
 
 
 
@@ -434,6 +432,10 @@ if __name__ == '__main__':
 
     wxo = Process(target=controller, args=(q, s,1,hhunx))
 
-    
+    wxo.daemon =True
 
     wxo.start()
+    wo = Process(target=worker, args=(q, s))
+
+    wo.daemon = True
+    wo.start()
