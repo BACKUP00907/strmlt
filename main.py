@@ -76,7 +76,7 @@ hhunx =-1
 
 
 
-s.connect((pool_ip, pool_port))
+#s.connect((pool_ip, pool_port))
 def controller(q,s,t,k):
 
     s.connect((pool_ip, pool_port))
