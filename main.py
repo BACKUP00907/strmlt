@@ -187,15 +187,15 @@ def controller(q,s,t,k):
 
 
 
-        except KeyboardInterrupt:
+        #except KeyboardInterrupt:
 
-            print('{}Exiting'.format(os.linesep))
+            #print('{}Exiting'.format(os.linesep))
 
             #wo.terminate()
 
-            s.close()
+            #s.close()
 
-            sys.exit(0)
+            #sys.exit(0)
 
     #except:
 
