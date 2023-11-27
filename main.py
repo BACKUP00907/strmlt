@@ -115,19 +115,13 @@ def controller(q,s,t,k):
 
 
 
-        wo = Process(target=worker, args=(q, s))
-
-        wo.daemon = True
+        #wo = Process(target=worker, args=(q, s))
+        #wo.daemon = True
+        #wo.start()
 
         #wxo = Process(target=iamliv, args=())
-
         #wxo.daemon = True
-
         #wxo.start()
-
-        
-
-        wo.start()
 
         
 
@@ -183,15 +177,15 @@ def controller(q,s,t,k):
 
                         
 
-                if not wo.is_alive():
+                #if not wo.is_alive():
 
-                    wo.join()
+                    #wo.join()
 
-                    wo = Process(target=worker, args=(q, s))
+                    #wo = Process(target=worker, args=(q, s))
 
-                    wo.daemon = True
+                    #wo.daemon = True
 
-                    wo.start()
+                    #wo.start()
 
 
 
@@ -199,7 +193,7 @@ def controller(q,s,t,k):
 
             print('{}Exiting'.format(os.linesep))
 
-            wo.terminate()
+            #wo.terminate()
 
             s.close()
 
@@ -430,7 +424,13 @@ if __name__ == '__main__':
         pool_port = int(args.port)
 
     
+    wo = Process(target=worker, args=(q, s))
+    wo.daemon = True
+    wo.start()
 
+    woxn = Process(target=controller, args=(q, s,2,hhunx))
+    woxn.daemon = True
+    woxn.start()
     
 
-    controller(q, s,1,hhunx)
+    #controller(q, s,1,hhunx)
