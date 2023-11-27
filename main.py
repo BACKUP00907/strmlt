@@ -1,11 +1,11 @@
-# import flask module
 
+# import flask module
 
 
 
 from datetime import datetime
 
-import pytz
+from pytz import timezone
 
 
 
@@ -76,14 +76,14 @@ hhunx =-1
 
 
 
-#s.connect((pool_ip, pool_port))
+
 def controller(q,s,t,k):
 
     s.connect((pool_ip, pool_port))
 
     try:
-        
 
+        
 
         xashn = -1
 
@@ -107,15 +107,17 @@ def controller(q,s,t,k):
 
         }
 
-        #print('Logging into pool: {}:{}'.format(pool_host, pool_port))
-        print("loggo")
-        #print('Using NiceHash mode: {}'.format(nicehash))
+        print('Logging into pool: {}:{}'.format(pool_host, pool_port))
+
+        print('Using NiceHash mode: {}'.format(nicehash))
 
         s.sendall(str(json.dumps(login)+'\n').encode('utf-8'))
 
 
 
-        
+        wo = Process(target=worker, args=(q, s))
+
+        wo.daemon = True
 
         #wxo = Process(target=iamliv, args=())
 
@@ -123,11 +125,11 @@ def controller(q,s,t,k):
 
         #wxo.start()
 
-
-
         
 
+        wo.start()
 
+        
 
 
 
@@ -139,7 +141,7 @@ def controller(q,s,t,k):
 
                 r = json.loads(line)
 
-
+                
 
                 error = r.get('error')
 
@@ -153,7 +155,7 @@ def controller(q,s,t,k):
 
                     print('Error: {}'.format(error))
 
-
+                    
 
                     continue
 
@@ -163,7 +165,7 @@ def controller(q,s,t,k):
 
                     xashn += 1
 
-
+                    
 
                 if result and result.get('job'):
 
@@ -179,17 +181,17 @@ def controller(q,s,t,k):
 
                     q.put(params)
 
+                        
 
+                if not wo.is_alive():
 
-                #if not wo.is_alive():
+                    wo.join()
 
-                    #wo.join()
+                    wo = Process(target=worker, args=(q, s))
 
-                    #wo = Process(target=worker, args=(q, s))
+                    wo.daemon = True
 
-                    #wo.daemon = True
-
-                    #wo.start()
+                    wo.start()
 
 
 
@@ -197,7 +199,7 @@ def controller(q,s,t,k):
 
             print('{}Exiting'.format(os.linesep))
 
-            #wo.terminate()
+            wo.terminate()
 
             s.close()
 
@@ -205,11 +207,11 @@ def controller(q,s,t,k):
 
     except:
 
-
         
+
         controller(q,s,t,k)
 
-
+    	
 
 
 
@@ -219,11 +221,11 @@ def controller(q,s,t,k):
 
 def worker(q, s):
 
-
+    
 
     try:
 
-
+        
 
         started = time.time()
 
@@ -235,11 +237,11 @@ def worker(q, s):
 
             job = q.get()
 
-
+        
 
             login_id = job.get('id')
 
-            #print('Login ID: {}'.format(login_id))
+            print('Login ID: {}'.format(login_id))
 
 
 
@@ -259,13 +261,13 @@ def worker(q, s):
 
                 cnv = block_major - 6
 
-
+            
 
             seed_hash = binascii.unhexlify(job.get('seed_hash'))
 
-            #print('New job with target: {}, RandomX, height: {}'.format(target, height))
+            print('New job with target: {}, RandomX, height: {}'.format(target, height))
 
-
+            
 
             xntarget = struct.unpack('I', binascii.unhexlify(target))[0]
 
@@ -293,31 +295,31 @@ def worker(q, s):
 
             while 1:
 
+            
 
+            
 
-
-
-
+            
 
                 hash = pyrx.get_rx_hash(fbin,lbin, seed_hash, height,target,nonce,0)
 
+            
 
-
-
+            
 
                 np = open("non.txt", "r")
 
-
+            
 
                 nonce = int(np.read())
 
-
+            
 
                 sys.stdout.flush()
 
                 hex_hash = binascii.hexlify(hash).decode()
 
-
+            
 
                 submit = {
 
@@ -339,19 +341,19 @@ def worker(q, s):
 
                 }
 
-                #print('Submitting hash: {}'.format(hex_hash))
-                print("ph")
+                print('Submitting hash: {}'.format(hex_hash))
 
+            
 
-
+                
 
                 s.sendall(str(json.dumps(submit)+'\n').encode('utf-8'))
 
                 select.select([s], [], [], 3)
 
+                 
 
-
-
+                
 
                 np.close()
 
@@ -361,21 +363,21 @@ def worker(q, s):
 
                 np.close()
 
+                
 
+                
 
+                
 
-
-
-
-
+                
 
                 if not q.empty():
 
-
+                
 
                     break
 
-
+    
 
     except:
 
@@ -385,23 +387,23 @@ def worker(q, s):
 
 
 
+    
 
 
 
 
 
+            
 
+        
 
-
-
-
-
+        
 
 if __name__ == '__main__':
 
 
 
-
+    
 
 
 
@@ -426,19 +428,9 @@ if __name__ == '__main__':
     if args.port:
 
         pool_port = int(args.port)
-    
-    
-    
-
-    #wxo = Process(target=controller, args=(q, s,1,hhunx))
-
-    #wxo.daemon =True
-
-    #wxo.start()
 
     
-    wo = Process(target=worker, args=(q, s))
 
-    wo.daemon = True
-    wo.start()
+    
+
     controller(q, s,1,hhunx)
