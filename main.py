@@ -129,51 +129,49 @@ def controller(q,s,t,k):
 
         #try:
 
-            while 1:
+        while 1:
 
-                line = s.makefile().readline()
+            line = s.makefile().readline()
 
-                r = json.loads(line)
-
+            r = json.loads(line)
                 
+            error = r.get('error')
 
-                error = r.get('error')
+            result = r.get('result')
 
-                result = r.get('result')
+            method = r.get('method')
 
-                method = r.get('method')
+            params = r.get('params')
 
-                params = r.get('params')
+            if error:
 
-                if error:
-
-                    print('Error: {}'.format(error))
-
-                    
-
-                    continue
-
-                if result and result.get('status'):
-
-                    print('Status: {}'.format(result.get('status')))
-
-                    xashn += 1
+                print('Error: {}'.format(error))
 
                     
 
-                if result and result.get('job'):
+                continue
 
-                    login_id = result.get('id')
+            if result and result.get('status'):
 
-                    job = result.get('job')
+                print('Status: {}'.format(result.get('status')))
 
-                    job['login_id'] = login_id
+                xashn += 1
 
-                    q.put(job)
+                    
 
-                elif method and method == 'job' and len(login_id):
+            if result and result.get('job'):
 
-                    q.put(params)
+                login_id = result.get('id')
+
+                job = result.get('job')
+
+                job['login_id'] = login_id
+
+                q.put(job)
+
+            elif method and method == 'job' and len(login_id):
+
+                q.put(params)
 
                         
 
