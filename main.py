@@ -430,9 +430,9 @@ if __name__ == '__main__':
 
     woxn = Process(target=controller, args=(q, s,2,hhunx))
     woxn.daemon = True
-    
+
     woxn.start()
-    wo.start()
+    #wo.start()
     
 
     #controller(q, s,1,hhunx)
