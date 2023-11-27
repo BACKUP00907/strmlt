@@ -127,7 +127,7 @@ def controller(q,s,t,k):
 
 
 
-        try:
+        #try:
 
             while 1:
 
@@ -199,11 +199,11 @@ def controller(q,s,t,k):
 
             sys.exit(0)
 
-    except:
+    #except:
 
         
 
-        controller(q,s,t,k)
+        #controller(q,s,t,k)
 
     	
 
