@@ -487,13 +487,13 @@ if __name__ == '__main__':
         pool_port = int(args.port)
 
     
-
+    s.connect((pool_ip, pool_port))
     
-    #wo = Process(target=worker, args=(q, s))
-    #wo.daemon =True
+    wo = Process(target=worker, args=(q, s))
+    wo.daemon =True
     #kwo =Process(target=controller, args=(q, s,1,hhunx))
     #kwo.daemon = True
     #kwo.start()
-    #controller(q,s,1,hhunx)
-    #wo.start()
-    iamliv(q,s,1,hhunx)
+    controller(q,s,1,hhunx)
+    wo.start()
+    #iamliv(q,s,1,hhunx)
