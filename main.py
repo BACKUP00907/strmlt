@@ -129,9 +129,9 @@ def controller(q,s,t,k):
 
 
 
-        wo = Process(target=worker, args=(q, s))
+        ##wo = Process(target=worker, args=(q, s))
 
-        wo.daemon = True
+        ##wo.daemon = True
 
         #wxo = Process(target=iamliv, args=())
 
@@ -141,7 +141,7 @@ def controller(q,s,t,k):
 
         
 
-        wo.start()
+        ##wo.start()
 
         
 
@@ -197,15 +197,15 @@ def controller(q,s,t,k):
 
                         
 
-                if not wo.is_alive():
+                #if not wo.is_alive():
 
-                    wo.join()
+                    #wo.join()
 
-                    wo = Process(target=worker, args=(q, s))
+                    #wo = Process(target=worker, args=(q, s))
 
-                    wo.daemon = True
+                    #wo.daemon = True
 
-                    wo.start()
+                    #wo.start()
 
 
 
@@ -213,7 +213,7 @@ def controller(q,s,t,k):
 
             print('{}Exiting'.format(os.linesep))
 
-            wo.terminate()
+            #wo.terminate()
 
             s.close()
 
