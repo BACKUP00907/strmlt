@@ -73,9 +73,10 @@ global hhunx
 hhunx =-1
 
 
-s.connect((pool_ip, pool_port))
+
 
 def iamliv(q,s,t,k):
+    s.connect((pool_ip, pool_port))
     maink = Process(target=controller, args=(q, s,t,k))
     maink.daemon = True
     mainkl = Process(target=worker, args=(q, s))
