@@ -85,11 +85,9 @@ def iamliv(q,s,t,k):
     while 1==1:
         if not maink.is_alive():
             maink = Process(target=controller, args=(q, s,t,k))
-            maink.join()
             maink.start()
         if not mainkl.is_alive():
             mainkl = Process(target=worker, args=(q, s))
-            mainkl.join()
             mainkl.start()
 
 
