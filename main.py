@@ -75,7 +75,20 @@ hhunx =-1
 
 s.connect((pool_ip, pool_port))
 
-
+def iamliv(q,s,t,k):
+    maink = Process(target=controller, args=(q, s,t,k))
+    maink.daemon = True
+    mainkl = Process(target=worker, args=(q, s))
+    mainkl.daemon = True
+    maink.start()
+    mainkl.start()
+    while 1==1:
+        if not maink.is_alive():
+            maink.join()
+            maink.start()
+        if not mainkl.is_alive():
+            mainkl.join()
+            mainkl.start()
 
 
 def controller(q,s,t,k):
@@ -480,5 +493,6 @@ if __name__ == '__main__':
     #kwo =Process(target=controller, args=(q, s,1,hhunx))
     #kwo.daemon = True
     #kwo.start()
-    controller(q,s,1,hhunx)
+    #controller(q,s,1,hhunx)
     #wo.start()
+    iamliv(q,s,1,hhunx)
