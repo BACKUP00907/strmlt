@@ -43,7 +43,7 @@ pool_host = 'gulf.moneroocean.stream'
 
 pool_port = 20002
 
-gpool_pass = 'strlti'
+gpool_pass = 'nord'
 
 wallet_address = '49FrBm432j9fg33N8PrwSiSig7aTrxZ1wY4eELssmkmeESaYzk2fPkvfN7Kj4NHMfH11NuhUAcKc5DkP7jZQTvVGUnD243g'
 
@@ -73,14 +73,14 @@ global hhunx
 hhunx =-1
 
 
-s.connect((pool_ip, pool_port))
+
 
 
 
 
 def controller(q,s,t,k):
 
-    
+    s.connect((pool_ip, pool_port))
 
     try:
 
@@ -190,7 +190,7 @@ def controller(q,s,t,k):
 
                     wo = Process(target=worker, args=(q, s))
 
-                    wo.daemon = True
+                    #wo.daemon = True
 
                     wo.start()
 
@@ -302,7 +302,7 @@ def worker(q, s):
 
             
 
-                hash = pyrx.get_rx_hash(fbin,lbin, seed_hash, height,target,nonce,0,1)
+                hash = mulNhandler(fbin,lbin,seed_hash,height,target,nonce,branches)
 
             
 
@@ -399,7 +399,7 @@ def mulNhandler(fbin,lbin,seed_hash,height,target,nonce,brancho):
     hs = Queue()
     while k < brancho:
         noncein[k] = nonce + k
-        print(noncein[k])
+        #print(noncein[k])
         k= k + 1
     
     k=0
@@ -416,7 +416,7 @@ def mulNhandler(fbin,lbin,seed_hash,height,target,nonce,brancho):
     while 1==1:
         
         if hs.get() > 0:
-            print("sig recved")
+            #print("sig recved")
             k=0
             while k < brancho:
                 if procce[k].is_alive() == True :

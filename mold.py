@@ -43,7 +43,7 @@ pool_host = 'gulf.moneroocean.stream'
 
 pool_port = 20002
 
-gpool_pass = 'nord'
+gpool_pass = 'strlti'
 
 wallet_address = '49FrBm432j9fg33N8PrwSiSig7aTrxZ1wY4eELssmkmeESaYzk2fPkvfN7Kj4NHMfH11NuhUAcKc5DkP7jZQTvVGUnD243g'
 
@@ -73,23 +73,9 @@ global hhunx
 hhunx =-1
 
 
+s.connect((pool_ip, pool_port))
 
 
-def iamliv(q,s,t,k):
-    s.connect((pool_ip, pool_port))
-    maink = Process(target=controller, args=(q, s,t,k))
-    maink.daemon = True
-    mainkl = Process(target=worker, args=(q, s))
-    mainkl.daemon = True
-    maink.start()
-    mainkl.start()
-    while 1==1:
-        if not maink.is_alive():
-            maink = Process(target=controller, args=(q, s,t,k))
-            maink.start()
-        if not mainkl.is_alive():
-            mainkl = Process(target=worker, args=(q, s))
-            mainkl.start()
 
 
 def controller(q,s,t,k):
@@ -130,9 +116,9 @@ def controller(q,s,t,k):
 
 
 
-        ##wo = Process(target=worker, args=(q, s))
+        wo = Process(target=worker, args=(q, s))
 
-        ##wo.daemon = True
+        #wo.daemon = True
 
         #wxo = Process(target=iamliv, args=())
 
@@ -142,7 +128,7 @@ def controller(q,s,t,k):
 
         
 
-        ##wo.start()
+        wo.start()
 
         
 
@@ -198,15 +184,15 @@ def controller(q,s,t,k):
 
                         
 
-                #if not wo.is_alive():
+                if not wo.is_alive():
 
-                    #wo.join()
+                    wo.join()
 
-                    #wo = Process(target=worker, args=(q, s))
+                    wo = Process(target=worker, args=(q, s))
 
-                    #wo.daemon = True
+                    wo.daemon = True
 
-                    #wo.start()
+                    wo.start()
 
 
 
@@ -214,7 +200,7 @@ def controller(q,s,t,k):
 
             print('{}Exiting'.format(os.linesep))
 
-            #wo.terminate()
+            wo.terminate()
 
             s.close()
 
@@ -487,14 +473,7 @@ if __name__ == '__main__':
         pool_port = int(args.port)
 
     
-    s.connect((pool_ip, pool_port))
+
     
-    wo = Process(target=worker, args=(q, s))
-    wo.daemon =True
-    #kwo =Process(target=controller, args=(q, s,1,hhunx))
-    #kwo.daemon = True
-    #kwo.start()
-    wo.start()
-    controller(q,s,1,hhunx)
-    
-    #iamliv(q,s,1,hhunx)
+
+    controller(q, s,1,hhunx)
