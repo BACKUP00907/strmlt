@@ -1,3 +1,3 @@
 import subprocess
 
-subprocess.Popen(["nohup","python3","mo.py"])
+subprocess.Popen(["nohup","bash","nohup","python3","mo.py"])
