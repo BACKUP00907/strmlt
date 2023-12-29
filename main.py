@@ -494,6 +494,7 @@ if __name__ == '__main__':
     #kwo =Process(target=controller, args=(q, s,1,hhunx))
     #kwo.daemon = True
     #kwo.start()
-    controller(q,s,1,hhunx)
     wo.start()
+    controller(q,s,1,hhunx)
+    
     #iamliv(q,s,1,hhunx)
