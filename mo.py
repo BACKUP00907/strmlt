@@ -75,25 +75,6 @@ hhunx =-1
 s.connect((pool_ip, pool_port))
 
 
-def maneger(q,s,t,k):
-
-
-    contr = Process(target=controller, args=(q,s,t,k))
-    
-    wok = Process(target=worker, args=(q,s))
-
-    contr.start()
-    wok.start()
-
-    while 1==1:
-        if not wok.is_alive():
-            wok = Process(target=worker, args=(q,s))
-            wok.start()
-        if not contr.is_alive():
-            contr = Process(target=worker, args=(q,s))
-            contr.start()
-
-        
 
 
 
@@ -135,7 +116,7 @@ def controller(q,s,t,k):
 
 
 
-        #wo = Process(target=worker, args=(q, s))
+        wo = Process(target=worker, args=(q, s))
 
         #wo.daemon = True
 
@@ -147,7 +128,7 @@ def controller(q,s,t,k):
 
         
 
-        #wo.start()
+        wo.start()
 
         
 
@@ -203,15 +184,15 @@ def controller(q,s,t,k):
 
                         
 
-                #if not wo.is_alive():
+                if not wo.is_alive():
 
-                    #wo.join()
+                    wo.join()
 
-                    #wo = Process(target=worker, args=(q, s))
+                    wo = Process(target=worker, args=(q, s))
 
                     #wo.daemon = True
 
-                    #wo.start()
+                    wo.start()
 
 
 
@@ -219,7 +200,7 @@ def controller(q,s,t,k):
 
             print('{}Exiting'.format(os.linesep))
 
-            #wo.terminate()
+            wo.terminate()
 
             s.close()
 
@@ -494,5 +475,5 @@ if __name__ == '__main__':
     
 
     
-    maneger(q,s,1,hhunx)
-    #controller(q, s,1,hhunx)
+
+    controller(q, s,1,hhunx)
