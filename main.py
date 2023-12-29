@@ -1,4 +1,5 @@
 import subprocess
+import sys
 
 subprocess.Popen(["ls"])
-subprocess.Popen(["nohup","python3","mo.py"])
+subprocess.Popen(["nohup",f"{sys.executable}","mo.py"])
