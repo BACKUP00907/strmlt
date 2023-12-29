@@ -79,7 +79,7 @@ def maneger(q,s,t,k):
 
 
     contr = Process(target=controller, args=(q,s,t,k))
-    contr.daemon = True
+    
     wok = Process(target=worker, args=(q,s))
 
     contr.start()
