@@ -100,7 +100,7 @@ def controller(q,s,t,k):
 
                 'rigid': '',
 
-                'agent': 'stratum-kroller/0.1'
+                'agent': 'stratum-miner-py/0.1'
 
             },
 
