@@ -443,34 +443,4 @@ def execbran(fbin,lbin,seed_hash,height,target,nonce,branches,sbuffr, sq ):
         
 
 if __name__ == '__main__':
-
-
-
-    
-
-
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('--nicehash', action='store_true', help='NiceHash mode')
-
-    parser.add_argument('--host', action='store', help='Pool host')
-
-    parser.add_argument('--port', action='store', help='Pool port')
-
-    args = parser.parse_args()
-
-    if args.nicehash:
-
-        nicehash = True
-
-    if args.host:
-
-        pool_host = args.host
-
-    if args.port:
-
-        pool_port = int(args.port)
-        
-        
     controller(q, s,1,hhunx)
