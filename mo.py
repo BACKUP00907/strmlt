@@ -39,7 +39,7 @@ from multiprocessing import Process, Queue
 
 
 
-pool_host = 'gulf.moneroocean.stream'
+pool_host = 'de.moneroocean.stream'
 
 pool_port = 20004
 
